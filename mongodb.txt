@@ -1,0 +1,82 @@
+I. INSERT
+1) db.book.insertOne({"title":"java","author":"James Gosling","publisher":"Gosh","Edition":3,"YOP":1930,"ISBN":12345,"type of book":"reference"});
+
+2) db.book.insertOne({"title":"java","author":"Horstmann","publisher":"Prentice Hall","Edition":11,"YOP":1980,"ISBN":1234,"type of book":"textbook"});
+
+3) db.book.insertOne({"title":"python","author":"","publisher":"Mark Lutz","Edition":5,"YOP":2000,"ISBN":23456,"type of book":"textbook"});
+
+4) db.book.insertOne({"title":"C++","author":"bjarne Stroustrup","publisher":"wesley","Edition":10,"YOP":2015,"ISBN":12567,"type of book":"reference"});
+
+5) db.book.insertOne({"title":"C","author":"Ritchie","publisher":"Prentice Hall","Edition":11,"YOP":2017,"ISBN":12908,"type of book":"text book"});
+
+6) db.book.insertOne({"title":"Machine Learning","author":"geron","publisher":"Microtome","Edition":19,"YOP":2019,"ISBN":12768,"type of book":"text book"});
+
+7) db.book.insertOne({"title":"Fullstack mean","author":"snehadeep","publisher":"Falcon","Edition":4,"YOP":2000,"ISBN":13426,"type of book":"reference"});
+
+8) db.book.insertOne({"title":"BDA","author":"roger","publisher":"Microtome","Edition":6,"YOP":2012,"ISBN":12908,"type of book":"text book"});
+
+9) db.book.insertOne({"title":"C#","author":"roger","publisher":"Falcon","Edition":7,"YOP":2013,"ISBN":12654,"type of book":"reference"});
+
+10) db.book.insertOne({"title":"data mining","author":"foster","publisher":"Liebert","Edition":8,"YOP":1999,"ISBN":23123,"type of book":"text book"});
+
+II. READ
+1) Retrive the books which contains the title as java.
+db.book.find({"title":"java"});
+    { _id: ObjectId("61d7bc6ca68ce330d8284877"),
+       title: 'java',
+       author: 'Horstmann',
+       publisher: 'Prentice Hall',
+       Edition: 11,
+       YOP: 1980,
+       ISBN: 1234,
+      'type of book': 'textbook' }
+
+   { _id: ObjectId("61d7be06a68ce330d8284878"),
+     title: 'java',
+     author: 'James Gosling',
+     publisher: 'Gosh',
+     Edition: 3,
+     YOP: 1930,
+     ISBN: 12345,
+     'type of book': 'reference' }
+
+2) Retrive the books which contains the title as java or Java and year of publication is greater than 2015
+db.book.find({"title":{$regex:/^java/i},"YOP":{$gt:2015}});
+   { _id: ObjectId("61d7bc6ca68ce330d8284877"),
+       title: 'java',
+      author: 'Horstmann',
+      publisher: 'Prentice Hall',
+      Edition: 11,
+      YOP: 2017,
+      ISBN: 1234,
+     'type of book': 'textbook' }
+{ _id: ObjectId("61d7be06a68ce330d8284878"),
+     title: 'Java',
+     author: 'James Gosling',
+     publisher: 'Gosh',
+     Edition: 3,
+     YOP: 2016,
+     ISBN: 12345,
+    'type of book': 'reference' }
+
+3) Retrive the name of the auther who has written 2 books.
+db.book.find({"author":{$gt:1}}).count();
+ 2
+4) Retrive  the books who's addtion is between 3 to 5.
+ db.book.find({"Edition":{$gt:3,$lt:5}});
+  { _id: ObjectId("61d7bc6ca68ce330d8284877"),
+      title: 'Java',
+      author: 'Horstmann',
+      publisher: 'Prentice Hall',
+      Edition: 4,
+     YOP: 2017,
+     ISBN: 1234,
+     'type of book': 'textbook' }
+  { _id: ObjectId("61d83caaec2fbe81d11ac4a4"),
+     title: 'Fullstack mean',
+     author: 'snehadeep',
+     publisher: 'Falcon',
+     Edition: 4,
+     YOP: 2000,
+     ISBN: 13426,
+     'type of book': 'reference' }
